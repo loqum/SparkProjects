@@ -44,9 +44,9 @@ object SqlNetworkWordCount {
       System.exit(1)
     }*/
 
-    // Create the context with a 2 second batch size
+    // Create the context with a 5 second batch size
     val sparkConf = new SparkConf().setAppName("SqlNetworkWordCount").setMaster("local[2]").set("spark.executor.memory", "1g")
-    val ssc = new StreamingContext(sparkConf, Seconds(2))
+    val ssc = new StreamingContext(sparkConf, Seconds(5))
 
     ssc.sparkContext.setLogLevel("ERROR")
     // Create a socket stream on target ip:port and count the
@@ -74,6 +74,8 @@ object SqlNetworkWordCount {
       println(s"========= $time =========")
       wordCountsDataFrame.show()
 
+      //val wordWithNo = spark.sql("select word, count(*) as total from words")
+
       val url = "jdbc:mysql://localhost:3306/sample?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
       val dbtable = "wordcount"
       val prop = new java.util.Properties
@@ -88,7 +90,6 @@ object SqlNetworkWordCount {
     ssc.awaitTermination()
   }
 }
-
 
 /** Case class for converting RDD to DataFrame */
 case class Record(word: String)
