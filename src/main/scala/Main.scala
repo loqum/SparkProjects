@@ -1,11 +1,10 @@
+import word_count.WordCountOld
+
 object Main {
 
   def main(args: Array[String]): Unit = {
-
-    val connection = new ConnectionBBDD
-
-    connection.connectionToMySql()
-
+    val twitter = new TwitterGraphXKatyPerry
+    twitter.run
   }
 
 }

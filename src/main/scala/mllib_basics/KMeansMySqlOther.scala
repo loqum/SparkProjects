@@ -1,12 +1,14 @@
+package mllib_basics
+
 import java.util.Properties
 
-import org.apache.spark.ml.feature.VectorAssembler
 import org.apache.spark.ml.clustering.KMeans
+import org.apache.spark.ml.feature.VectorAssembler
 import org.apache.spark.sql.SparkSession
 
-object KMeansMySqlOther {
+class KMeansMySqlOther {
 
-  def main(args: Array[String]): Unit = {
+  def kMeansMySqlOther: Unit = {
     val spark = SparkSession
       .builder
       .appName("Spark SQL basic example")
@@ -46,8 +48,6 @@ object KMeansMySqlOther {
     model.clusterCenters.foreach(println)
 
     System.in.read
-
   }
-
 
 }

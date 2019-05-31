@@ -15,3 +15,5 @@ libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-hive" % sparkVersion,
   "mysql" % "mysql-connector-java" % "8.0.16"
 )
+
+mainClass in (Compile, run) := Some("word_count.WordCountNew")

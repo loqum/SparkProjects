@@ -1,12 +1,10 @@
+package mllib_basics
+
 import org.apache.spark.mllib.fpm.AssociationRules
 import org.apache.spark.mllib.fpm.FPGrowth.FreqItemset
 import org.apache.spark.{SparkConf, SparkContext}
 
-object AssociationRules {
-
-  def main(args: Array[String]) {
-    run()
-  }
+class AssociationRulesRFM {
 
   def run(): Unit = {
     val conf = new SparkConf().setAppName("AssociationRulesExample").setMaster("local[2]").set("spark.executor.memory", "1g")

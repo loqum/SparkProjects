@@ -1,7 +1,6 @@
-import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
-import org.apache.spark.mllib.linalg.Vectors
+package connection_bbdd
+
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.{Row, SaveMode, SparkSession}
 
 class ConnectionBBDD {

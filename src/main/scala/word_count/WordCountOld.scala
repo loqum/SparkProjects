@@ -1,7 +1,9 @@
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.SparkConf
+package word_count
 
-class WordCount {
+import org.apache.spark.SparkConf
+import org.apache.spark.sql.SparkSession
+
+class WordCountOld {
 
   def count(): Unit = {
 
@@ -14,6 +16,7 @@ class WordCount {
 
     val linesDF = sc.read.textFile("lorem.txt").toDF("line")
     val wordsDF = linesDF.explode("line", "word")((line: String) => line.split(" "))
+
     val wordCountDF = wordsDF.groupBy("word").count
     wordCountDF.show
     wordCountDF.coalesce(1).write.json("resultado")

@@ -6,10 +6,9 @@ import org.apache.spark.ml.regression.LinearRegression
 import org.apache.spark.sql.{SaveMode, SparkSession}
 import org.apache.spark.sql.types.{DataTypes, StructField, StructType}
 
-object Temperature {
+class Temperature {
 
-  def main(args: Array[String]): Unit = {
-
+  def temperature: Unit = {
     val spark = SparkSession
       .builder
       .appName("Linear Regression: Temperature")
@@ -47,7 +46,7 @@ object Temperature {
       ("header", "true"))
 
     val tsvWithHeaderOptions: Map[String, String] = Map(
-      ("delimiter", "\t"),
+      ("delimiter", "\t,"),
       ("header", "true"))
 
     result.coalesce(1)
@@ -56,19 +55,19 @@ object Temperature {
       .options(csvWithHeaderOptions)
       .csv("outputTemperatureCSV")
 
-    result.coalesce(1)
+    result
+      .coalesce(1)
       .write
       .mode(SaveMode.Overwrite)
       .options(tsvWithHeaderOptions)
       .csv("outputTemperatureTSV")
 
     result.coalesce(1)
-        .write
-        .mode(SaveMode.Overwrite)
-        .json("outputTemperatureJSON")
+      .write
+      .mode(SaveMode.Overwrite)
+      .json("outputTemperatureJSON")
 
     result.show
-
   }
 
 }

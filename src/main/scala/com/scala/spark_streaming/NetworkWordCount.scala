@@ -1,9 +1,7 @@
 package com.scala.spark_streaming
 
-import org.apache.avro.file.DataFileStream
 import org.apache.spark.SparkConf
 import org.apache.spark.storage.StorageLevel
-import org.apache.spark.streaming.dstream.DStream
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
 /**
@@ -17,12 +15,13 @@ import org.apache.spark.streaming.{Seconds, StreamingContext}
   * and then run the example
   * `$ bin/run-example org.apache.spark.examples.streaming.NetworkWordCount localhost 9999`
   */
-object NetworkWordCount {
-  def main(args: Array[String]) {
+class NetworkWordCount {
+
+  def networkWordCount: Unit = {
     /*if (args.length < 2) {
-      System.err.println("Usage: NetworkWordCount <hostname> <port>")
-      System.exit(1)
-    }*/
+     System.err.println("Usage: NetworkWordCount <hostname> <port>")
+     System.exit(1)
+   }*/
 
     // Create the context with a 1 second batch size
     val sparkConf = new SparkConf().setAppName("NetworkWordCount").setMaster("local[2]").set("spark.executor.memory", "1g")
@@ -44,7 +43,6 @@ object NetworkWordCount {
     ssc.start
     ssc.awaitTermination
     System.in.read
-
   }
 
 }

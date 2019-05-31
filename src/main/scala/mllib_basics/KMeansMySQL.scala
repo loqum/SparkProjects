@@ -1,3 +1,5 @@
+package mllib_basics
+
 import java.util.Properties
 
 import org.apache.spark.mllib.linalg.Vector
@@ -5,9 +7,10 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 // $example on$
 import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
-object KMeansMySQL {
 
-  def main(args: Array[String]) {
+class KMeansMySQL {
+
+  def kmeansMySql: Unit = {
     val sc = SparkSession
       .builder
       .appName("Spark SQL basic example")
@@ -45,4 +48,5 @@ object KMeansMySQL {
 
     sc.stop
   }
+
 }
